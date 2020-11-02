@@ -18,6 +18,7 @@ function readTable(data) {
 readTable(tableData);
 
 function changeDate() {
+    d3.select("tbody").html("");
     d3.event.preventDefault();
     var inputDate = d3.select("#datetime").property("value");
     console.log(inputDate);
@@ -27,7 +28,6 @@ function changeDate() {
     readTable(filteredData);
 }
 
+var submit = d3.select("#filter-btn");
+submit.on("click", changeDate);
 //filter-btn on click then call funtion
-
-// Object.values(dataRow).forEach((val))=>{let 
-//let cell = row.append("td");   cell.text(val);}
