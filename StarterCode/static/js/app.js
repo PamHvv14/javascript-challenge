@@ -30,4 +30,3 @@ function changeDate() {
 
 var submit = d3.select("#filter-btn");
 submit.on("click", changeDate);
-//filter-btn on click then call funtion
