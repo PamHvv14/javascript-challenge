@@ -21,16 +21,21 @@ function buttonFilter() {
 
     d3.select("tbody").html("");
     d3.event.preventDefault();
-    // Select the input date, state, shape and get the raw HTML nodes
-    var inputValue = d3.select("#datetime").property("value");
-    console.log(inputValue);
-    // Filter Data with datetime equal to input value
-    var filteredData = tableData.filter(sighting => sighting.datetime === inputValue ||
-                                                    sighting.city === inputValue ||
-                                                    sighting.state === inputValue ||
-                                                    sighting.country === inputValue ||
-                                                    sighting.shape === inputValue);
-    console.log(filteredData);
+    // Get the value property of the input elements and set all text to lowercase
+    var dateTime = d3.select("#datetime").property("value");
+    var selectedCountry = d3.select("#country").property("value").toLowerCase();
+    var selectedState = d3.select("#state").property("value").toLowerCase();
+    var selectedCity = d3.select("#city").property("value").toLowerCase();
+    var selectedShape = d3.select("#shape").property("value").toLowerCase();
+
+    // initialize tableData as filteredData
+    filteredData = tableData;
+    if (dateTime) {filteredData = filteredData.filter(record => record.datetime === dateTime);}
+    if (selectedCountry) {filteredData = filteredData.filter(record => record.country === selectedCountry);}
+    if (selectedState) {filteredData = filteredData.filter(record => record.state === selectedState);}
+    if (selectedCity) {filteredData = filteredData.filter(record => record.city === selectedCity);}
+    if (selectedShape) {filteredData = filteredData.filter(record => record.shape === selectedShape);}
+
     readTable(filteredData);
 };
 
